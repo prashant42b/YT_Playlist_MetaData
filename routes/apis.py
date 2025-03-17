@@ -10,6 +10,6 @@ CORS(apis, resources={r"/*": {"origins": "*"}})
 def before_request():
     pass
 
-@apis.route('/test",methods=["GET"]')
+@apis.route('/test',methods=["GET"])
 def test_route():
     return jsonify('Success'), status_codes.HTTP_200_OK
