@@ -56,3 +56,32 @@ class status_codes:
     HTTP_509_BANDWIDTH_LIMIT_EXCEEDED = 509
     HTTP_510_NOT_EXTENDED = 510
     HTTP_511_NETWORK_AUTHENTICATION_REQUIRED = 511
+    
+class response_messages:
+    SUCCESS = "Success"
+    FAILURE = "Failure"
+    SOMETHING_WENT_WRONG = "Something Went Wrong"
+    NOT_FOUND = "Not Found"
+    UNAUTHORIZED = "Unauthorized"
+    BAD_REQUEST = "Bad Request"
+    INTERNAL_SERVER_ERROR = "Internal Server Error"
+    CREATED = "Created"
+    UPDATED = "Updated"
+    DELETED = "Deleted"
+    NOTHING_TO_UPDATE = "Nothing to Update"
+    NOTHING_TO_DELETE = "Nothing to Delete"
+    NOT_MODIFIED = "Not Modified"
+    NOT_ACCEPTABLE = "Not Acceptable"
+    CONFLICT = "Conflict"
+    UNPROCESSABLE_ENTITY = "Unprocessable Entity"
+    LOCKED = "Locked"
+    FAILED_DEPENDENCY = "Failed Dependency"
+    TOO_MANY_REQUESTS = "Too Many Requests"
+    UNAVAILABLE_FOR_LEGAL_REASONS = "Unavailable For Legal Reasons"
+    BAD_GATEWAY = "Bad Gateway"
+    SERVICE_UNAVAILABLE = "Service Unavailable"
+    GATEWAY_TIMEOUT = "Gateway Timeout"
+    HTTP_VERSION_NOT_SUPPORTED = "HTTP Version Not Supported"
+    INSUFFICIENT_STORAGE = "Insufficient Storage"
+    NETWORK_AUTHENTICATION_REQUIRED = "Network Authentication Required"
+
