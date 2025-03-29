@@ -1,19 +1,18 @@
 import os, requests
 from utils.date_util import convert_utc_to_ist
 
-def get_yt_playlist_data():
+def get_yt_playlist_data(playlist_id):
 
-    required_vars = ["part", "YT_PLAYLIST_ID", "maxResults", "YT_DATA_API_V3_KEY"]
-    for var in required_vars:
+    required_keys = ["part", "maxResults", "YT_DATA_API_V3_KEY"]
+    for var in required_keys:
         if not os.environ.get(var):
             raise ValueError(f"Missing required environment variable: {var}")
 
     part = os.environ.get("part")
-    playlist_id = os.environ.get("YT_PLAYLIST_ID")
     max_results = int(os.environ.get("maxResults", 50))  #Default 50
     api_key = os.environ.get("YT_DATA_API_V3_KEY")
 
-    #yt-data-v3 api url
+    #yt-data-v3 api url - get playlist items
     url = f"https://www.googleapis.com/youtube/v3/playlistItems"
     params = {
         "part": part,
@@ -39,9 +38,9 @@ def get_yt_playlist_data():
 
     return all_videos
 
-def fetch_playlist_metadata():
+def fetch_playlist_metadata(playlist_id):
     
-    videos = get_yt_playlist_data()
+    videos = get_yt_playlist_data(playlist_id)
     count=0
     videos_list = []
     for video in videos:
@@ -59,14 +58,16 @@ def fetch_playlist_metadata():
         default_thumb = thumbnails.get("default",{})
         thumbnail_url = default_thumb.get("url","No Thumbnail")
         video_dict = {
-            'Position': position,
-            'Title': title, 
+            'S. No.': position+1,
+            'Title': title,
+            'Published At': convert_utc_to_ist(published_at), 
             'Channel Name': channel_name,
+            'Video URL': f"youtube.com/video/{video_id}",
+            'Channel URL': f"youtube.com/channel/{channel_id}",
             'Channel ID': channel_id,
-            'Published At': convert_utc_to_ist(published_at),
             'Video ID': video_id, 
             'Thumbnail URL': thumbnail_url
         }
         videos_list.append(video_dict)
-        
+    
     return videos_list
